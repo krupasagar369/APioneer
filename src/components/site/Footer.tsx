@@ -106,7 +106,7 @@ export function Footer() {
           <ul className="mt-7 grid gap-3 text-sm text-on-dark-muted">
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden />
-              Level 9, Prestige Tech Park, Outer Ring Road, Bengaluru 560103, India
+              Nagarbhavi 2nd Stage, Bangalore, Karnataka, India — 560091
             </li>
             <li className="flex items-center gap-3">
               <Phone className="h-4 w-4 shrink-0 text-gold" aria-hidden />

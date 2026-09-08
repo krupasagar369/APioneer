@@ -21,9 +21,25 @@ import {
   Video,
   X,
 } from "lucide-react";
-import { categories, courses, partners } from "@/data/site";
+import { partners } from "@/data/site";
+import { partnerCourses } from "@/data/partner-courses";
+import { microsoftCourses } from "@/data/microsoft-courses";
 import { Logo } from "./Logo";
 import { ActionButton, PartnerLogo } from "./ui";
+
+const allRealCourses = [...partnerCourses, ...microsoftCourses];
+
+const realCategories = Array.from(
+  allRealCourses.reduce((map, c) => {
+    map.set(c.category, (map.get(c.category) ?? 0) + 1);
+    return map;
+  }, new Map<string, number>()),
+)
+  .map(([name, count]) => ({ name, count }))
+  .sort((a, b) => b.count - a.count)
+  .slice(0, 6);
+
+const featuredCourses = allRealCourses.slice(0, 4);
 
 type MenuKey = "partners" | "courses" | "training" | "insights" | null;
 
@@ -39,13 +55,13 @@ const insightLinks = [
   { to: "/blogs", label: "Blogs", detail: "Perspectives from our practice leads", icon: Newspaper },
   { to: "/resources", label: "Resources", detail: "Reports, toolkits and brochures", icon: FileText },
   { to: "/careers", label: "Careers", detail: "Build the future of enterprise learning", icon: Sparkles },
-  { to: "/about", label: "About APIONEER", detail: "Our story, values and leadership", icon: GraduationCap },
+  { to: "/about", label: "About aPIONEER", detail: "Our story, values and leadership", icon: GraduationCap },
 ];
 
 const allNavLinks = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/group-of-apioneer", label: "Group of APIONEER" },
+  { to: "/group-of-apioneer", label: "Group of aPIONEER" },
   { to: "/learning-partners", label: "Learning Partners" },
   { to: "/courses", label: "Courses" },
   { to: "/categories", label: "Categories" },
@@ -108,10 +124,14 @@ export function Header() {
   const results =
     query.trim().length > 1
       ? [
-          ...courses
+          ...allRealCourses
             .filter((c) => (c.title + c.category + c.partner).toLowerCase().includes(query.toLowerCase()))
             .slice(0, 5)
-            .map((c) => ({ label: c.title, sub: c.category, to: `/courses/${c.slug}` })),
+            .map((c) => ({
+              label: c.title,
+              sub: c.category,
+              to: `/learning-partners/${c.partnerSlug}/courses/${c.slug}`,
+            })),
           ...partners
             .filter((p) => p.name.toLowerCase().includes(query.toLowerCase()))
             .slice(0, 3)
@@ -199,7 +219,7 @@ export function Header() {
             </button>
             <div className="hidden md:block">
               <ActionButton to="/group-of-apioneer" variant="navy">
-                Group of APIONEER
+                Group of aPIONEER
               </ActionButton>
             </div>
             <button
@@ -257,10 +277,10 @@ export function Header() {
                   <div>
                     <MegaTitle>Browse by category</MegaTitle>
                     <ul className="mt-4 grid gap-1">
-                      {categories.map((c) => (
-                        <li key={c.slug}>
+                      {realCategories.map((c) => (
+                        <li key={c.name}>
                           <Link
-                            href="/categories"
+                            href={`/courses?category=${encodeURIComponent(c.name)}`}
                             className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-navy/85 transition-colors hover:bg-surface hover:text-navy"
                           >
                             {c.name}
@@ -273,21 +293,19 @@ export function Header() {
                   <div>
                     <MegaTitle>Featured programmes</MegaTitle>
                     <ul className="mt-4 grid gap-1">
-                      {courses
-                        .filter((c) => c.featured)
-                        .map((c) => (
-                          <li key={c.slug}>
-                            <Link
-                              href={`/courses/${c.slug}`}
-                              className="block rounded-lg px-3 py-2 transition-colors hover:bg-surface"
-                            >
-                              <span className="block text-sm font-medium text-navy">{c.title}</span>
-                              <span className="text-xs text-muted-foreground">
-                                {c.partner} · {c.duration}
-                              </span>
-                            </Link>
-                          </li>
-                        ))}
+                      {featuredCourses.map((c) => (
+                        <li key={`${c.partnerSlug}-${c.slug}`}>
+                          <Link
+                            href={`/courses?q=${encodeURIComponent(c.title)}`}
+                            className="block rounded-lg px-3 py-2 transition-colors hover:bg-surface"
+                          >
+                            <span className="block text-sm font-medium text-navy">{c.title}</span>
+                            <span className="text-xs text-muted-foreground">
+                              {c.partner} · {c.duration}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                   <MegaPromo
@@ -439,7 +457,7 @@ export function Header() {
             </nav>
             <div className="border-t border-border p-5">
               <ActionButton to="/group-of-apioneer" variant="gold" size="lg" className="w-full">
-                Group of APIONEER
+                Group of aPIONEER
               </ActionButton>
             </div>
           </div>
