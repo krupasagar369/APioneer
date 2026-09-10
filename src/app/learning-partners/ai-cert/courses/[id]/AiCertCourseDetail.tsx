@@ -20,6 +20,7 @@ import { inferLevel, stripHtml } from "@/lib/integrations/ai-certs/client";
 import type { AiCertsCourseFull, AiCertsCourseFullResponse } from "@/lib/integrations/ai-certs/types";
 import { ActionButton, PageHero, Pill } from "@/components/site/ui";
 import { InquiryForm } from "@/components/site/InquiryForm";
+import { downloadGeneratedBrochure } from "@/lib/pdf/downloadGeneratedBrochure";
 
 // Fetched client-side from the AI CERTs partner API's single-course endpoint, which
 // returns the full syllabus (certificate overview, modules, tools) — a different,
@@ -31,6 +32,7 @@ type LoadState = "loading" | "notfound" | "ready";
 export function AiCertCourseDetail({ id, partnerName }: { id: string; partnerName: string }) {
   const [course, setCourse] = useState<AiCertsCourseFull | null>(null);
   const [state, setState] = useState<LoadState>("loading");
+  const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -89,6 +91,24 @@ export function AiCertCourseDetail({ id, partnerName }: { id: string; partnerNam
     ov.exam_format && { icon: FileText, label: "Exam Format", value: ov.exam_format },
   ].filter(Boolean) as { icon: typeof Box; label: string; value: string }[];
 
+  async function handleDownloadBrochure() {
+    setDownloading(true);
+    const result = await downloadGeneratedBrochure({
+      title: courseTitle,
+      partner: partnerName,
+      category: category || undefined,
+      credential: course.certificate_code || undefined,
+      duration: ov.certificate_duration ? stripHtml(ov.certificate_duration) : undefined,
+      intro: course.description ? stripHtml(course.description) : tagline || undefined,
+      objectives: modules.map((m) => m.certification_module_title).filter((t): t is string => Boolean(t)),
+      prerequisites: ov.prerequisites ? [stripHtml(ov.prerequisites)] : undefined,
+    });
+    if (!result.ok) {
+      console.error("[ai-certs] brochure download failed:", result.error);
+    }
+    setDownloading(false);
+  }
+
   return (
     <>
       <PageHero
@@ -117,6 +137,9 @@ export function AiCertCourseDetail({ id, partnerName }: { id: string; partnerNam
           </ActionButton>
           <ActionButton to="/contact" variant="outline" size="lg">
             Request Callback
+          </ActionButton>
+          <ActionButton variant="ghost-light" size="lg" onClick={handleDownloadBrochure}>
+            {downloading ? "Preparing…" : "Download Brochure"}
           </ActionButton>
         </div>
       </PageHero>
@@ -279,6 +302,9 @@ export function AiCertCourseDetail({ id, partnerName }: { id: string; partnerNam
                 </ActionButton>
                 <ActionButton to="/contact" variant="outline">
                   Request Callback
+                </ActionButton>
+                <ActionButton variant="outline" onClick={handleDownloadBrochure}>
+                  {downloading ? "Preparing…" : "Download Brochure"}
                 </ActionButton>
               </div>
               <div className="mt-6 flex items-start gap-3 rounded-xl bg-teal/8 p-4">

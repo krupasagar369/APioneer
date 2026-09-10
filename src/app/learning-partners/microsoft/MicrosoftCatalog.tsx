@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, Clock, ExternalLink, Loader2, Search, SlidersHorizontal, Star, X } from "lucide-react";
+import Link from "next/link";
+import { AlertTriangle, ChevronRight, Clock, GraduationCap, Loader2, Search, SlidersHorizontal, Star, X } from "lucide-react";
 import type { MsLearnCatalogResponse, MsLearnItem } from "@/lib/integrations/ms-learn/types";
 import { ActionButton } from "@/components/site/ui";
 
@@ -261,11 +262,9 @@ export function MicrosoftCatalog() {
             <>
               <div className="mt-6 grid gap-4">
                 {visible.map((c) => (
-                  <a
+                  <Link
                     key={c.uid}
-                    href={c.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={`/learning-partners/microsoft/courses/${encodeURIComponent(c.uid)}`}
                     className="group flex flex-col gap-3 rounded-2xl border border-border bg-card p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-lift sm:flex-row sm:items-center"
                   >
                     {c.icon_url ? (
@@ -273,7 +272,7 @@ export function MicrosoftCatalog() {
                       <img src={c.icon_url} alt="" className="h-11 w-11 shrink-0 rounded-lg object-contain" />
                     ) : (
                       <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-teal/10 text-teal">
-                        <ExternalLink className="h-4.5 w-4.5" aria-hidden />
+                        <GraduationCap className="h-4.5 w-4.5" aria-hidden />
                       </span>
                     )}
                     <div className="min-w-0 flex-1">
@@ -306,8 +305,8 @@ export function MicrosoftCatalog() {
                         ) : null}
                       </div>
                     </div>
-                    <ExternalLink className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-teal" aria-hidden />
-                  </a>
+                    <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:translate-x-0.5 group-hover:text-teal" aria-hidden />
+                  </Link>
                 ))}
               </div>
 
