@@ -50,6 +50,8 @@ const divisions = [
     icon: GraduationCap,
     accent: "#158A80",
     title: "Learning & Development",
+    image: "/images/learning-development-hero.jpg",
+    imageAlt: "Facilitator leading a corporate training session",
     tagline: "Build future-ready capabilities for individuals and enterprises.",
     items: ["Corporate Learning", "Technology Training", "AI & Generative AI", "Leadership Development", "Professional Development", "Customized Learning", "Upskilling & Reskilling"],
     cta: "Explore Learning & Development",
@@ -60,6 +62,8 @@ const divisions = [
     icon: Users2,
     accent: "#1F5AA6",
     title: "HRM Services",
+    image: "/images/hrm-services-hero.jpg",
+    imageAlt: "HR consultants reviewing workforce strategy",
     tagline: "Build stronger people. Build stronger organizations.",
     items: ["Talent Acquisition", "HR Consulting", "Workforce Solutions", "Performance Management", "Talent Management", "Employee Engagement", "HR Policies & Processes", "Organization Development"],
     cta: "Explore HRM Services",
@@ -70,6 +74,8 @@ const divisions = [
     icon: Cog,
     accent: "#2C3E8C",
     title: "Engineering Services",
+    image: "/images/engineering-services-hero.jpg",
+    imageAlt: "Engineers reviewing a technical design",
     tagline: "Engineering solutions for complex business needs.",
     items: ["Engineering Design", "CAD & 3D Modelling", "Technical Documentation", "Manufacturing Engineering", "Project Engineering", "Reverse Engineering", "Digital Engineering", "Engineering Outsourcing"],
     cta: "Explore Engineering Services",
@@ -81,6 +87,8 @@ const divisions = [
     accent: "#B4801F",
     title: "Advanced Manufacturing",
     subtitle: "Pighalitadhatu Innovative Solutions Private Limited",
+    image: "/images/advanced-manufacturing-hero.jpg",
+    imageAlt: "Precision manufacturing equipment on a production floor",
     tagline: "Precision engineering. Advanced manufacturing.",
     items: ["Die Casting", "Tooling", "Prototyping", "Machining", "3D Scanning", "Reverse Engineering", "Quality Inspection", "R&D", "Engineering Components"],
     cta: "Explore Advanced Manufacturing",
@@ -91,6 +99,8 @@ const divisions = [
     icon: Award,
     accent: "#6E1424",
     title: "ARGHYA — Premium Corporate Gifting",
+    image: "/images/arghya-hero.jpg",
+    imageAlt: "Curated premium corporate gift box",
     tagline: "Thoughtful gifts. Lasting impressions.",
     items: ["Executive Gifting", "Premium Corporate Gifts", "Employee Welcome Kits", "Employee Recognition", "Client Appreciation", "Leadership Gifts", "Festival Gifting", "Customized Merchandise", "Premium Hampers", "Sustainable Gifting"],
     cta: "Explore ARGHYA",
@@ -160,7 +170,7 @@ export default function IntegratedBusinessSolutionsPage() {
               Integrated capabilities for organizations seeking to build, transform and grow.
             </p>
             <p className="mt-4 text-pretty text-sm leading-relaxed text-white/60">
-              aPIONEER brings together specialized capabilities across Learning &amp; Development, HRM Services,
+              APIONEER brings together specialized capabilities across Learning &amp; Development, HRM Services,
               Engineering Services, Advanced Manufacturing and Premium Corporate Gifting to support organizations
               through different stages of their business journey.
             </p>
@@ -169,7 +179,7 @@ export default function IntegratedBusinessSolutionsPage() {
                 Explore Our Solutions
               </ActionButton>
               <ActionButton to="/contact" variant="ghost-light" size="lg">
-                Talk to aPIONEER
+                Talk to APIONEER
               </ActionButton>
             </div>
           </div>
@@ -177,7 +187,7 @@ export default function IntegratedBusinessSolutionsPage() {
           <div className="relative mx-auto aspect-square w-full max-w-[24rem]">
             <div className="absolute inset-0 rounded-full border border-dashed border-white/15" />
             <div className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-teal/20 text-teal">
-              <span className="text-center text-[0.65rem] font-bold uppercase tracking-wide">aPIONEER</span>
+              <span className="text-center text-[0.65rem] font-bold uppercase tracking-wide">APIONEER</span>
             </div>
             {divisions.map((d, i) => {
               const angle = (i / divisions.length) * 2 * Math.PI - Math.PI / 2;
@@ -207,8 +217,9 @@ export default function IntegratedBusinessSolutionsPage() {
       {/* ---------------- One group. Multiple capabilities. ---------------- */}
       <section className="section-y container-x">
         <SectionHeading
-          eyebrow="One group. Multiple capabilities. One commitment."
-          title="Organizations achieve stronger outcomes when their people, capabilities, technology and business requirements are addressed through connected solutions."
+          eyebrow="Why one group"
+          title="One group. Multiple capabilities. One commitment."
+          description="Organizations achieve stronger outcomes when their people, capabilities, technology and business requirements are addressed through connected solutions."
           align="center"
           maxWidth="max-w-4xl"
         />
@@ -227,48 +238,71 @@ export default function IntegratedBusinessSolutionsPage() {
 
       {/* ---------------- Divisions ---------------- */}
       <section id="divisions" className="section-y bg-surface">
-        <div className="container-x grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+        <div className="container-x grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {divisions.map((d) => (
-            <div
+            <Link
               key={d.slug}
-              className="flex flex-col rounded-3xl border border-border bg-card p-7 shadow-soft"
-              style={{ borderTopWidth: 3, borderTopColor: d.accent }}
+              href={`/group-of-apioneer/${d.slug}`}
+              className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl"
             >
-              <div className="flex items-center gap-3">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-xs font-bold text-white" style={{ backgroundColor: d.accent }}>
-                  {d.number}
-                </span>
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full" style={{ backgroundColor: `${d.accent}14`, color: d.accent }}>
-                  <d.icon className="h-4.5 w-4.5" aria-hidden />
+
+              <div className="flex flex-1 flex-col p-6">
+                <div className="flex items-center gap-3">
+                  <span
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-xs font-bold text-white"
+                    style={{ backgroundColor: d.accent }}
+                  >
+                    {d.number}
+                  </span>
+                  <span
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+                    style={{ backgroundColor: `${d.accent}14`, color: d.accent }}
+                  >
+                    <d.icon className="h-4.5 w-4.5" aria-hidden />
+                  </span>
+                </div>
+                <h5 className="mt-4 text-base leading-snug text-navy transition-colors duration-300">{d.title}</h5>
+               <div className="relative h-30 w-full overflow-hidden, mt-5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={d.image}
+                  alt={d.imageAlt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110, rounded-lg"
+                />
+                {/* <div className="absolute inset-0" style={{ backgroundColor: `${d.accent}55` }} aria-hidden /> */}
+                <span
+                  className="absolute inset-x-0 top-0 h-1 transition-all duration-300 group-hover:h-2 mb-2.5"
+                  style={{ backgroundColor: d.accent }}
+                  aria-hidden
+                />
+              </div>
+                {d.subtitle ? <p className="mt-0.5 text-xs font-medium text-muted-foreground">{d.subtitle}</p> : null}
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d.tagline}</p>
+                <ul className="mt-5 grid gap-2">
+                  {d.items.map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-xs text-navy sm:text-sm">
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: d.accent }} aria-hidden />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <span
+                  className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold"
+                  style={{ color: d.accent }}
+                >
+                  {d.cta}
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden />
                 </span>
               </div>
-              <h3 className="mt-4 text-lg text-navy">{d.title}</h3>
-              {d.subtitle ? <p className="mt-0.5 text-xs font-medium text-muted-foreground">{d.subtitle}</p> : null}
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d.tagline}</p>
-              <ul className="mt-5 grid gap-2">
-                {d.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-navy">
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: d.accent }} aria-hidden />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={`/group-of-apioneer/${d.slug}`}
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
-                style={{ color: d.accent }}
-              >
-                {d.cta}
-                <ArrowUpRight className="h-4 w-4" aria-hidden />
-              </Link>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
 
       {/* ---------------- The aPIONEER advantage ---------------- */}
       <section className="section-y container-x">
-        <SectionHeading eyebrow="Why one group" title="The aPIONEER Advantage" align="center" />
+        <SectionHeading eyebrow="Why one group" title="The APIONEER Advantage" align="center" />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {advantages.map((a) => (
             <div key={a.title} className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center shadow-soft">
@@ -303,6 +337,7 @@ export default function IntegratedBusinessSolutionsPage() {
         </div>
       </section>
 
+ 
       {/* ---------------- Who we serve + Global capability ---------------- */}
       <section className="section-y container-x">
         <div className="grid gap-8 lg:grid-cols-2">
@@ -322,24 +357,35 @@ export default function IntegratedBusinessSolutionsPage() {
               *Industries listed reflect our current focus and experience.
             </p>
           </div>
-
-          <div className="rounded-3xl border border-border bg-card p-8 shadow-soft">
-            <h2 className="text-xl text-navy">Global Business Capability</h2>
-            <p className="mt-1.5 text-sm font-semibold text-teal">From India to the World</p>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              aPIONEER is developing a global network of capabilities, partnerships and delivery opportunities. Our
-              objective is to combine local understanding, specialist expertise and global delivery capability to
-              support organizations across markets.
-            </p>
-            <div className="mt-6 grid grid-cols-3 gap-4 sm:grid-cols-5">
-              {regions.map((r) => (
-                <div key={r} className="flex flex-col items-center gap-2 text-center">
-                  <span className="grid h-11 w-11 place-items-center rounded-full border border-teal/25 text-teal">
-                    <MapPin className="h-4.5 w-4.5" aria-hidden />
-                  </span>
-                  <span className="text-xs leading-tight text-muted-foreground">{r}</span>
-                </div>
-              ))}
+ 
+          <div className="relative overflow-hidden rounded-3xl border border-border p-8 shadow-soft">
+            <div className="absolute inset-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/globe.png"
+                alt=""
+                className="h-full w-full  object-cover"
+              />
+              <div className="absolute inset-0 bg-card/92" />
+            </div>
+            <div className="relative">
+              <h2 className="text-xl text-navy">Global Business Capability</h2>
+              <p className="mt-1.5 text-sm font-semibold text-teal">From India to the World</p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                APIONEER is developing a global network of capabilities, partnerships and delivery opportunities. Our
+                objective is to combine local understanding, specialist expertise and global delivery capability to
+                support organizations across markets.
+              </p>
+              <div className="mt-6 grid grid-cols-3 gap-4 sm:grid-cols-5">
+                {regions.map((r) => (
+                  <div key={r} className="flex flex-col items-center gap-2 text-center">
+                    <span className="grid h-11 w-11 place-items-center rounded-full border border-teal/25 bg-card text-teal">
+                      <MapPin className="h-4.5 w-4.5" aria-hidden />
+                    </span>
+                    <span className="text-xs leading-tight text-muted-foreground">{r}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

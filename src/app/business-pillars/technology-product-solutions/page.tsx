@@ -157,7 +157,7 @@ export default function TechnologyProductSolutionsPage() {
               Technology and products that help organizations modernize, automate, integrate and scale.
             </p>
             <p className="mt-4 text-pretty text-sm leading-relaxed text-white/60">
-              aPIONEER delivers technology solutions and products that enable digital transformation, improve
+              APIONEER delivers technology solutions and products that enable digital transformation, improve
               operational efficiency and create new business value. Our solutions are built on emerging
               technologies, industry best practices and a deep understanding of enterprise needs.
             </p>
@@ -166,7 +166,7 @@ export default function TechnologyProductSolutionsPage() {
                 Explore Solutions
               </ActionButton>
               <ActionButton to="/contact" variant="ghost-light" size="lg">
-                Talk to aPIONEER
+                Talk to APIONEER
               </ActionButton>
             </div>
           </div>

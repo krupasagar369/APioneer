@@ -56,6 +56,7 @@ const impactStats = [
   { icon: Star, value: "98%", label: "Learner Satisfaction" },
 ];
 
+
 const learningPartnerLogos = [
   { name: "IBM", logo: "https://ik.imagekit.io/iq6dnzo5f/ibm.jpg", tag: "Authorized Training Partner" },
   { name: "Microsoft", logo: "https://ik.imagekit.io/iq6dnzo5f/Microsoft-Learning-Partner.webp?updatedAt=1771827020366", tag: "Learning Partner" },

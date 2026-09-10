@@ -18,8 +18,8 @@ type Props = { params: Promise<{ slug: string; courseSlug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { courseSlug } = await params;
   const course = allPartnerCourses.find((c) => c.slug === courseSlug);
-  if (!course) return { title: "Course not found — APIONEER", robots: { index: false, follow: false } };
-  const title = `${course.title} — APIONEER`;
+  if (!course) return { title: "Course not found — aPIONEER", robots: { index: false, follow: false } };
+  const title = `${course.title} — aPIONEER`;
   return { title, description: course.tagline, openGraph: { title, description: course.tagline } };
 }
 
@@ -50,7 +50,7 @@ export default async function PartnerCourseDetailPage({ params }: Props) {
           <ActionButton to="/contact" variant="gold" size="lg">
             Enroll Now
           </ActionButton>
-          <ActionButton to="/resources" variant="outline" size="lg">
+          <ActionButton href={`/api/brochure/${partner.slug}/${course.slug}`} variant="outline" size="lg">
             Download Brochure
           </ActionButton>
         </div>
@@ -215,6 +215,9 @@ export default async function PartnerCourseDetailPage({ params }: Props) {
               <div className="mt-7 grid gap-3">
                 <ActionButton to="/contact" variant="gold">
                   Enroll Now
+                </ActionButton>
+                <ActionButton href={`/api/brochure/${partner.slug}/${course.slug}`} variant="outline">
+                  Download Brochure
                 </ActionButton>
                 <ActionButton to="/contact" variant="outline">
                   Request Callback

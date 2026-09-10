@@ -156,7 +156,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col gap-3 py-6 text-xs text-on-dark-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} APIONEER Business Solutions Private Limited. All rights reserved.</p>
-          <p>CIN: U72900KA2015PTC000000 · GSTIN: 29AAACA0000A1ZQ</p>
+          {/* <p>CIN: U72900KA2015PTC000000 · GSTIN: 29AAACA0000A1ZQ</p> */}
         </div>
       </div>
     </footer>

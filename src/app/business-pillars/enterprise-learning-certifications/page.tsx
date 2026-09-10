@@ -213,7 +213,7 @@ export default function EnterpriseLearningSolutionsPage() {
       <section className="section-y container-x">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-teal">The future belongs to skilled organizations</p>
+            <h6 className="text-[10 rem] font-bold uppercase tracking-[0.18em] text-teal">The future belongs to skilled organizations</h6>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Technology is transforming the way organizations operate, compete and create value.
             </p>
@@ -228,7 +228,7 @@ export default function EnterpriseLearningSolutionsPage() {
           </div>
 
           <div>
-            <p className="text-center text-[0.7rem] font-bold uppercase tracking-[0.18em] text-navy-soft">From skills to business impact</p>
+            <p className="text-center text-[10 rem] font-bold uppercase tracking-[0.18em] text-navy-soft">From skills to business impact</p>
             <div className="mt-6 grid grid-cols-5 gap-3">
               {skillsToImpact.map((s) => (
                 <div key={s.title} className="flex flex-col items-center gap-2 text-center">
@@ -419,4 +419,4 @@ export default function EnterpriseLearningSolutionsPage() {
       />
     </>
   );
-}
+} 

@@ -107,7 +107,7 @@ export default function Home() {
       </section>
 
       {/* ---------------- Three strategic pillars ---------------- */}
-      <section className="section-y ">
+      <section id="pillars" className="section-y ">
         <div className="container-x">
           <SectionHeading eyebrow="One group. Three strategic pillars." title="Everything your organisation needs, under one roof" align="center" />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -161,51 +161,58 @@ export default function Home() {
                 ],
               },
             ].map((pillar) => (
-              <Reveal key={pillar.number} className="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-card">
-                <div className="p-7">
-                  <div className="flex items-center gap-4">
-                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-navy-gradient text-white">
-                      <pillar.icon className="h-5 w-5" aria-hidden />
-                    </span>
-                    <span className="font-display text-3xl font-bold text-navy/20">{pillar.number}</span>
+              <Reveal key={pillar.number}>
+                <Link
+                  href={pillar.cta.to}
+                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl"
+                >
+                  <div className="p-7">
+                    <div className="flex items-center gap-4">
+                      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-navy-gradient text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                        <pillar.icon className="h-5 w-5" aria-hidden />
+                      </span>
+                      <span className="font-display text-3xl font-bold text-navy/20">{pillar.number}</span>
+                    </div>
+                    <h3 className="mt-4 text-lg leading-snug text-navy">{pillar.title}</h3>
+                    <p className="mt-2 border-b border-border pb-5 text-sm leading-relaxed text-muted-foreground">
+                      {pillar.subtitle}
+                    </p>
+                    <ul className="mt-6 grid gap-4">
+                      {pillar.items.map((item) => (
+                        <li key={item.title} className="flex items-center gap-3">
+                          {"logo" in item && item.logo ? (
+                            <span className="grid h-16 w-16 shrink-0 place-items-center">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={item.logo} alt={`${item.title} logo`} className="h-full w-full object-contain" />
+                            </span>
+                          ) : "icon" in item && item.icon ? (
+                            <span className="grid h-16 w-16 shrink-0 place-items-center rounded-lg bg-teal/12 text-navy">
+                              <item.icon className="h-4 w-4" aria-hidden />
+                            </span>
+                          ) : null}
+                          <span className="min-w-0">
+                            <span className="block text-sm font-semibold text-navy">{item.title}</span>
+                            <span className="block text-xs leading-snug text-muted-foreground">{item.detail}</span>
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="mt-4 text-lg leading-snug text-navy">{pillar.title}</h3>
-                  <p className="mt-2 border-b border-border pb-5 text-sm leading-relaxed text-muted-foreground">
-                    {pillar.subtitle}
-                  </p>
-                  <ul className="mt-6 grid gap-4">
-                    {pillar.items.map((item) => (
-                      <li key={item.title} className="flex items-center gap-3">
-                        {"logo" in item && item.logo ? (
-                          <span className="grid h-15 w-15 shrink-0 place-items-center">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={item.logo} alt={`${item.title} logo`} className="h-full w-full object-contain" />
-                          </span>
-                        ) : "icon" in item && item.icon ? (
-                          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-teal/12 text-navy">
-                            <item.icon className="h-4 w-4" aria-hidden />
-                          </span>
-                        ) : null}
-                        <span className="min-w-0">
-                          <span className="block text-sm font-semibold text-navy">{item.title}</span>
-                          <span className="block text-xs leading-snug text-muted-foreground">{item.detail}</span>
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="relative mt-auto h-36 overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={pillar.image} alt={pillar.imageAlt} loading="lazy" className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 bg-navy-deep/45" />
-                  <Link
-                    href={pillar.cta.to}
-                    className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-navy-deep py-3.5 text-sm font-semibold text-white transition-colors hover:bg-navy"
-                  >
-                    {pillar.cta.label}
-                    <span aria-hidden>→</span>
-                  </Link>
-                </div>
+                  <div className="relative mt-auto h-36 overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={pillar.image}
+                      alt={pillar.imageAlt}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-120"
+                    />
+                    <div className="absolute inset-0 bg-navy-deep/45 transition-colors duration-300 group-hover:bg-navy-deep/30" />
+                    <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-navy-deep py-3.5 text-sm font-semibold text-white transition-colors duration-300 group-hover:bg-navy">
+                      {pillar.cta.label}
+                      <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden>→</span>
+                    </span>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -347,7 +354,7 @@ export default function Home() {
       
 
       {/* ---------------- Featured certifications ---------------- */}
-      <section className="section-y container-x">
+      {/* <section className="section-y container-x">
         <SectionHeading
           eyebrow="Featured programmes"
           title="Certification tracks our clients request most"
@@ -378,7 +385,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ---------------- Corporate training split ---------------- */}
       <section className="section-y bg-surface">
