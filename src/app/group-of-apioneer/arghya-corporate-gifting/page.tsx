@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Award,
   Boxes,
@@ -118,15 +119,16 @@ export default function ArghyaCorporateGiftingPage() {
           </div>
 
           <div className="relative">
-            <div
-              className="aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 shadow-lift"
-              style={{ background: `linear-gradient(135deg, ${maroonSoft}, #1c0710)` }}
-            >
-              {/* Replace with a real gift-box photo at /images/arghya-hero.jpg */}
-              <div className="flex h-full w-full items-center justify-center">
-                <Boxes className="h-16 w-16 text-white/25" aria-hidden />
-              </div>
-            </div>
+          <div className="relative aspect-[5/3] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-navy to-teal/40 shadow-lift">
+            <Image
+              src="/images/arghya-hero.jpg"
+              alt="ARGHYA Corporate Gifting Hero Image"
+              fill
+              priority
+              sizes="(min-width: 1024px) 45vw, 90vw"
+              className="rounded-3xl object-cover"
+            />
+          </div>
           </div>
         </div>
 
@@ -177,12 +179,16 @@ export default function ArghyaCorporateGiftingPage() {
                 </div>
               ))}
             </div>
-            <div className="mt-7 aspect-[16/9] overflow-hidden rounded-2xl" style={{ background: `linear-gradient(135deg, ${maroon}1a, ${maroon}33)` }}>
-              {/* Replace with a real gift-hamper photo at /images/arghya-collections.jpg */}
-              <div className="flex h-full w-full items-center justify-center">
-                <Boxes className="h-10 w-10" style={{ color: `${maroon}55` }} aria-hidden />
-              </div>
-            </div>
+          <div className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-navy to-teal/40 shadow-lift, mt-6">
+            <Image
+              src="/images/Arghyagifiting.jpg"
+              alt="Trainer leading a technology learning and development session"
+              fill
+              priority
+              sizes="(min-width: 1024px) 45vw, 90vw"
+              className="rounded-3xl object-cover"
+            />
+          </div>
           </div>
 
           <div className="rounded-3xl border border-border bg-card p-8 shadow-soft">
@@ -197,12 +203,16 @@ export default function ArghyaCorporateGiftingPage() {
                 </div>
               ))}
             </div>
-            <div className="mt-7 aspect-[16/9] overflow-hidden rounded-2xl" style={{ background: `linear-gradient(135deg, ${maroon}1a, ${maroon}33)` }}>
-              {/* Replace with a real photo (hands presenting a gift box) at /images/arghya-why-choose.jpg */}
-              <div className="flex h-full w-full items-center justify-center">
-                <Heart className="h-10 w-10" style={{ color: `${maroon}55` }} aria-hidden />
-              </div>
-            </div>
+          <div className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-navy to-teal/40 shadow-lift, mt-6">
+            <Image
+              src="/images/Arghyagifiting.jpg"
+              alt="Trainer leading a technology learning and development session"
+              fill
+              priority
+              sizes="(min-width: 1024px) 45vw, 90vw"
+              className="rounded-3xl object-cover"
+            />
+          </div>
           </div>
         </div>
       </section>

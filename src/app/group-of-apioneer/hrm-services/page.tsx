@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Briefcase,
   Building2,
@@ -128,12 +129,16 @@ export default function HrmServicesPage() {
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-navy to-teal/40 shadow-lift">
-              {/* Replace with a real HRM/team photo at /images/hrm-services-hero.jpg */}
-              <div className="flex h-full w-full items-center justify-center">
-                <Users2 className="h-16 w-16 text-white/25" aria-hidden />
-              </div>
-            </div>
+          <div className="relative aspect-[5/3] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-navy to-teal/40 shadow-lift">
+            <Image
+              src="/images/hrm-services-hero.jpg"
+              alt="HRM Services Hero Image"
+              fill
+              priority
+              sizes="(min-width: 1024px) 45vw, 90vw"
+              className="rounded-3xl object-cover"
+            />
+          </div>
             <div className="mt-6 grid grid-cols-2 gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm sm:grid-cols-4">
               {[
                 { icon: Target, label: "Strategic HR Solutions" },
@@ -185,12 +190,6 @@ export default function HrmServicesPage() {
                 </li>
               ))}
             </ol>
-            <div className="mt-7 aspect-[16/7] overflow-hidden rounded-2xl bg-gradient-to-br from-navy/8 to-teal/12">
-              {/* Replace with a real photo at /images/hrm-services-approach.jpg */}
-              <div className="flex h-full w-full items-center justify-center">
-                <Users2 className="h-10 w-10 text-navy/20" aria-hidden />
-              </div>
-            </div>
           </div>
 
           <div className="rounded-3xl border border-border bg-card p-8 shadow-soft">

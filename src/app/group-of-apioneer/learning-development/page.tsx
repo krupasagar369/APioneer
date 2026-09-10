@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Award,
   BrainCircuit,
@@ -122,11 +123,15 @@ export default function LearningDevelopmentPage() {
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-navy to-teal/40 shadow-lift">
-              {/* Replace with a real training-session photo at /images/learning-development-hero.jpg */}
-              <div className="flex h-full w-full items-center justify-center">
-                <GraduationCap className="h-16 w-16 text-white/25" aria-hidden />
-              </div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-navy to-teal/40 shadow-lift">
+              <Image
+                src="/images/learning-development-hero.jpg"
+                alt="Trainer leading a technology learning and development session"
+                fill
+                priority
+                sizes="(min-width: 1024px) 45vw, 90vw"
+                className="rounded-3xl object-cover"
+              />
             </div>
             <div className="mt-6 grid grid-cols-2 gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm sm:grid-cols-4">
               {[
