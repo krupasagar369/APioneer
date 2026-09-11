@@ -92,6 +92,10 @@ export function AiCertCourseDetail({ id, partnerName }: { id: string; partnerNam
   ].filter(Boolean) as { icon: typeof Box; label: string; value: string }[];
 
   async function handleDownloadBrochure() {
+    // `course` is narrowed to non-null above, but that narrowing doesn't carry
+    // into this nested closure — TypeScript needs its own local guard here.
+    if (!course) return;
+
     setDownloading(true);
     const result = await downloadGeneratedBrochure({
       title: courseTitle,

@@ -31,6 +31,42 @@ export type Partner = {
   faqs: { q: string; a: string }[];
 };
 
+export interface BlogPost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  author: string;
+  date: string;
+  read: string;
+  // Optional — safe to omit on any post; fill in per-article as content is written.
+  authorRole?: string;
+  authorBio?: string;
+  keyTakeaways?: string[];
+  body?: { heading: string; paragraphs: string[] }[];
+  faqs?: { question: string; answer: string }[];
+  ogImage?: string;
+}
+
+export interface Career {
+  slug: string;
+  title: string;
+  team: string;
+  location: string;
+  type: string;
+  exp: string;
+  blurb: string;
+  // Optional — safe to omit on any role.
+  employmentType?: "FULL_TIME" | "PART_TIME" | "CONTRACTOR" | "INTERN";
+  datePosted?: string;
+  validThrough?: string;
+  about?: string;
+  responsibilities?: string[];
+  requirements?: string[];
+  niceToHave?: string[];
+  benefits?: string[];
+}
+
 export const categories = [
   { slug: "cloud", name: "Cloud & Infrastructure", count: 48, blurb: "Azure, AWS and hybrid cloud architecture tracks." },
   { slug: "cybersecurity", name: "Cybersecurity & Risk", count: 36, blurb: "ISO, GRC, SOC and defensive security programmes." },
@@ -510,7 +546,7 @@ export const webinars = [
   { slug: "agile-metrics-that-matter", title: "Agile Metrics That Executives Actually Trust", date: "10 Sep 2026", time: "16:00 IST", speaker: "Kabir Shah", role: "Certified Scrum Trainer", duration: "45 min", blurb: "Replacing velocity theatre with flow metrics that drive real decisions." },
 ];
 
-export const blogs = [
+export const blogs: BlogPost[] = [
   { slug: "skills-gap-2026", title: "The Enterprise Skills Gap Report 2026", category: "Research", date: "18 Jul 2026", read: "9 min", author: "APIONEER Research", excerpt: "What 400 technology leaders told us about capability shortfalls in cloud, security and AI — and the budgets they are moving to close them." },
   { slug: "certification-roi", title: "Measuring the ROI of Certification Programmes", category: "Corporate L&D", date: "09 Jul 2026", read: "7 min", author: "Ritika Menon", excerpt: "A practical model for connecting certification spend to delivery throughput, incident reduction and retention." },
   { slug: "ai-upskilling-blueprint", title: "An AI Upskilling Blueprint for Non-Technical Teams", category: "Artificial Intelligence", date: "28 Jun 2026", read: "6 min", author: "Dr. Meera Iyer", excerpt: "How to build fluency across finance, HR and operations without turning everyone into a data scientist." },
@@ -528,13 +564,153 @@ export const resources = [
   { title: "Learning Programme ROI Calculator", type: "Calculator", pages: "Spreadsheet", blurb: "Model cost, productivity uplift and payback for a proposed cohort." },
 ];
 
-export const careers = [
-  { slug: "senior-cloud-trainer", title: "Senior Cloud Trainer (Azure / AWS)", team: "Delivery", location: "Bengaluru · Hybrid", type: "Full-time", exp: "8+ years", blurb: "Lead enterprise cloud cohorts and shape our architecture curriculum." },
-  { slug: "enterprise-account-director", title: "Enterprise Account Director", team: "Growth", location: "Mumbai · Hybrid", type: "Full-time", exp: "10+ years", blurb: "Own strategic accounts across BFSI and manufacturing." },
-  { slug: "learning-experience-designer", title: "Learning Experience Designer", team: "Learning Design", location: "Remote · India", type: "Full-time", exp: "5+ years", blurb: "Design cohort journeys, labs and assessment strategy." },
-  { slug: "cybersecurity-consultant", title: "Cybersecurity Consultant (ISMS)", team: "Consulting", location: "Hyderabad · Onsite", type: "Full-time", exp: "6+ years", blurb: "Deliver ISO 27001 implementation and audit engagements." },
-  { slug: "government-programme-manager", title: "Government Programme Manager", team: "Public Sector", location: "New Delhi · Onsite", type: "Full-time", exp: "9+ years", blurb: "Run large-scale public sector upskilling programmes end to end." },
-  { slug: "marketing-content-lead", title: "Marketing Content Lead", team: "Marketing", location: "Remote · India", type: "Full-time", exp: "6+ years", blurb: "Own thought leadership, research reports and demand content." },
+export const careers: Career[] = [
+  {
+    slug: "senior-cloud-trainer",
+    title: "Senior Cloud Trainer (Azure / AWS)",
+    team: "Delivery",
+    location: "Bengaluru · Hybrid",
+    type: "Full-time",
+    exp: "8+ years",
+    blurb: "Lead enterprise cloud cohorts and shape our architecture curriculum.",
+    about:
+      "As a Senior Cloud Trainer, you'll lead enterprise-facing cohorts across Azure and AWS, working directly with client architecture teams while shaping our internal curriculum roadmap.",
+    responsibilities: [
+      "Deliver facilitator-led cloud architecture and administration cohorts for enterprise clients",
+      "Design and maintain lab environments aligned to current Azure/AWS certification paths",
+      "Mentor junior trainers and review curriculum content for technical accuracy",
+      "Partner with the consulting practice on client-specific training customisation",
+    ],
+    requirements: [
+      "8+ years hands-on cloud architecture or platform engineering experience",
+      "Active Azure Solutions Architect Expert or AWS Solutions Architect Professional certification",
+      "Prior facilitation, training or technical mentoring experience",
+      "Strong written and verbal communication skills",
+    ],
+    niceToHave: ["Multi-cloud experience (GCP)", "Experience building certification-aligned courseware", "Public speaking or conference presentation history"],
+    benefits: ["Annual certification and conference allowance", "Hybrid working with regional flexibility", "Practitioner time — spend part of the year on live client engagements"],
+  },
+  {
+    slug: "enterprise-account-director",
+    title: "Enterprise Account Director",
+    team: "Growth",
+    location: "Mumbai · Hybrid",
+    type: "Full-time",
+    exp: "10+ years",
+    blurb: "Own strategic accounts across BFSI and manufacturing.",
+    about:
+      "You'll own and grow a portfolio of strategic enterprise accounts across BFSI and manufacturing, working closely with delivery and consulting to shape multi-year capability partnerships.",
+    responsibilities: [
+      "Own revenue and relationship strategy for a portfolio of enterprise accounts",
+      "Identify and develop new capability-partnership opportunities within existing accounts",
+      "Partner with delivery leadership on proposal design and commercial structuring",
+      "Represent aPIONEER at senior client and industry forums",
+    ],
+    requirements: [
+      "10+ years enterprise B2B sales or account management experience",
+      "Track record selling into BFSI or manufacturing sectors",
+      "Comfortable operating at CXO level",
+      "Based in or willing to relocate to Mumbai",
+    ],
+    niceToHave: ["Experience selling L&D, consulting or SaaS platforms", "Existing BFSI/manufacturing network"],
+    benefits: ["Uncapped commission structure", "Hybrid working", "Global account exposure across 42 countries"],
+  },
+  {
+    slug: "learning-experience-designer",
+    title: "Learning Experience Designer",
+    team: "Learning Design",
+    location: "Remote · India",
+    type: "Full-time",
+    exp: "5+ years",
+    blurb: "Design cohort journeys, labs and assessment strategy.",
+    about:
+      "You'll design end-to-end cohort learning journeys — from lab architecture to assessment strategy — working closely with subject-matter experts and delivery faculty.",
+    responsibilities: [
+      "Design cohort learning journeys, lab exercises and assessment rubrics",
+      "Collaborate with faculty and SMEs to translate expertise into structured curriculum",
+      "Continuously improve programme completion and satisfaction metrics",
+      "Maintain instructional design standards across the course catalogue",
+    ],
+    requirements: [
+      "5+ years instructional design or learning experience design",
+      "Portfolio demonstrating adult learning and cohort-based programme design",
+      "Comfort working with technical subject matter (cloud, security, data)",
+    ],
+    niceToHave: ["Experience with LMS platforms", "Background in UX or service design"],
+    benefits: ["Fully remote within India", "Annual learning budget", "Cross-functional exposure to every practice area"],
+  },
+  {
+    slug: "cybersecurity-consultant",
+    title: "Cybersecurity Consultant (ISMS)",
+    team: "Consulting",
+    location: "Hyderabad · Onsite",
+    type: "Full-time",
+    exp: "6+ years",
+    blurb: "Deliver ISO 27001 implementation and audit engagements.",
+    about:
+      "Join our consulting practice delivering ISO 27001 implementation, gap assessment and internal audit engagements for enterprise clients across sectors.",
+    responsibilities: [
+      "Lead ISO 27001 gap assessments and implementation roadmaps for client engagements",
+      "Conduct internal audits and support clients through certification audits",
+      "Develop ISMS documentation, risk registers and Statements of Applicability",
+      "Co-deliver PECB-accredited training cohorts alongside the delivery team",
+    ],
+    requirements: [
+      "6+ years information security or GRC consulting experience",
+      "PECB or equivalent ISO 27001 Lead Implementer/Auditor certification",
+      "Experience running client-facing engagements independently",
+    ],
+    niceToHave: ["ISO 22301 or ISO 27701 experience", "Sector experience in BFSI or healthcare"],
+    benefits: ["Client-facing variety across sectors", "Certification sponsorship", "Path to Lead Consultant"],
+  },
+  {
+    slug: "government-programme-manager",
+    title: "Government Programme Manager",
+    team: "Public Sector",
+    location: "New Delhi · Onsite",
+    type: "Full-time",
+    exp: "9+ years",
+    blurb: "Run large-scale public sector upskilling programmes end to end.",
+    about:
+      "You'll run large-scale public sector upskilling programmes end to end — from stakeholder alignment through delivery governance and outcome reporting.",
+    responsibilities: [
+      "Own delivery governance for multi-department public sector training programmes",
+      "Manage relationships with government stakeholders and procurement teams",
+      "Coordinate faculty scheduling and quality assurance across large cohorts",
+      "Report programme outcomes against contractual KPIs",
+    ],
+    requirements: [
+      "9+ years programme management experience, ideally in public sector or large enterprise",
+      "Experience managing multi-stakeholder government or PSU engagements",
+      "Strong reporting and governance discipline",
+    ],
+    niceToHave: ["Prior experience with government tendering/procurement processes", "PMP or equivalent certification"],
+    benefits: ["High-impact, large-scale programme ownership", "Public sector career track", "Team leadership responsibility"],
+  },
+  {
+    slug: "marketing-content-lead",
+    title: "Marketing Content Lead",
+    team: "Marketing",
+    location: "Remote · India",
+    type: "Full-time",
+    exp: "6+ years",
+    blurb: "Own thought leadership, research reports and demand content.",
+    about:
+      "You'll own our thought leadership engine — research reports, blog content and demand-generation campaigns that establish aPIONEER's authority in enterprise learning.",
+    responsibilities: [
+      "Plan and produce research reports, blog content and case studies",
+      "Own editorial calendar across owned channels",
+      "Partner with growth team on demand-generation campaign content",
+      "Maintain brand voice and content quality standards",
+    ],
+    requirements: [
+      "6+ years B2B content marketing experience, ideally in tech/L&D/consulting",
+      "Strong portfolio of long-form and research-driven content",
+      "Comfortable working with data and technical SMEs",
+    ],
+    niceToHave: ["SEO/AEO content optimisation experience", "Experience commissioning original research"],
+    benefits: ["Fully remote within India", "Creative ownership of brand voice", "Budget for original research commissioning"],
+  },
 ];
 
 export const services = [
@@ -578,9 +754,7 @@ export const ctaOptions = ["Request Callback", "Download Brochure", "Talk to an 
 
 export type Workshop = (typeof workshops)[number];
 export type Webinar = (typeof webinars)[number];
-export type BlogPost = (typeof blogs)[number];
 export type Resource = (typeof resources)[number];
-export type Career = (typeof careers)[number];
 export type Testimonial = (typeof testimonials)[number];
 
 const caseHealthcare = "/images/corporate-training.jpg";

@@ -170,9 +170,9 @@ export function Header() {
             Accredited partner for Microsoft, AWS, PECB and Scrum Alliance certifications
           </p>
           <div className="flex items-center gap-6">
-            <a href="tel:+911800000000" className="inline-flex items-center gap-1.5 transition-colors hover:text-gold">
+            <a href="tel:+91 80 29558700" className="inline-flex items-center gap-1.5 transition-colors hover:text-gold">
               <Phone className="h-3.5 w-3.5" aria-hidden />
-              +91 1800 000 000
+                 +91 80 29558700     
             </a>
             <a href="mailto:learn@apioneer.com" className="inline-flex items-center gap-1.5 transition-colors hover:text-gold">
               <Mail className="h-3.5 w-3.5" aria-hidden />

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const contactDetails = [
-  { icon: Phone, label: "Phone", value: "+91 1800 000 000", href: "tel:+911800000000" },
+  { icon: Phone, label: "Phone", value: "+91 80 29558700", href: "tel:+91 80 29558700" },
   { icon: Mail, label: "Email", value: "info@apioneer.com", href: "mailto:info@apioneer.com" },
   { icon: MapPin, label: "Office", value: "Nagarbhavi 2nd Stage, Bangalore, Karnataka, India — 560091" },
   { icon: Clock, label: "Business hours", value: "Monday – Friday, 9:30 AM – 6:30 PM IST" },
