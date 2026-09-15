@@ -50,7 +50,13 @@ const whatWeManufacture = [
   "Custom Solutions as per Drawings and Specifications",
 ];
 
-const keyProducts = ["Automotive Components", "Industrial Components", "Machinery Parts", "Precision Housings", "Heat Sink & Enclosures"];
+const keyProducts = [
+  { name: "Automotive Components", slug: "automotive-components" },
+  { name: "Industrial Components", slug: "industrial-components" },
+  { name: "Machinery Parts", slug: "machinery-parts" },
+  { name: "Precision Housings", slug: "precision-housings" },
+  { name: "Heat Sink & Enclosures", slug: "heat-sink-enclosures" },
+];
 
 const qualityStandards = [
   "Advanced Testing & Inspection Facilities",
@@ -187,14 +193,17 @@ export default function AdvancedManufacturingPage() {
             <h3 className="mt-9 text-lg text-navy">Key Products We Manufacture</h3>
             <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-5">
               {keyProducts.map((p) => (
-                <div key={p} className="text-center">
-                  <div className="aspect-square overflow-hidden rounded-xl bg-gradient-to-br from-navy/8 to-gold/15">
-                    {/* Replace with a real product photo at /images/manufacturing-product-<slug>.jpg */}
-                    <div className="flex h-full w-full items-center justify-center">
-                      <Cog className="h-8 w-8 text-navy/20" aria-hidden />
-                    </div>
+                <div key={p.slug} className="text-center">
+                  <div className="relative aspect-square overflow-hidden rounded-xl bg-gradient-to-br from-navy/8 to-gold/15">
+                    <Image
+                      src={`/images/${p.slug}.jpg`}
+                      alt={p.name}
+                      fill
+                      sizes="(min-width: 640px) 18vw, 45vw"
+                      className="object-cover"
+                    />
                   </div>
-                  <p className="mt-2 text-xs font-medium text-muted-foreground">{p}</p>
+                  <p className="mt-2 text-xs font-medium text-muted-foreground">{p.name}</p>
                 </div>
               ))}
             </div>
