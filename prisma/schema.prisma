@@ -13,3 +13,38 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+model Workshop {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  date      DateTime
+  city      String
+  format    String // "In-person" | "Virtual"
+  seats     Int?
+  duration  String
+  focus     String
+  blurb     String
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([published, date])
+}
+
+model Webinar {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  date             DateTime
+  time             String
+  speaker          String
+  role             String
+  duration         String
+  blurb            String
+  registrationUrl  String?
+  published        Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([published, date])
+}

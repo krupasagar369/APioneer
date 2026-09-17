@@ -80,6 +80,7 @@ export default function BlogsPage() {
         description="Research, certification updates and capability benchmarks for technology and L&D leaders."
         primary={{ label: "Talk to an Expert", to: "/contact" }}
         secondary={{ label: "Browse Resources", to: "/resources" }}
+      
       />
     </>
   );

@@ -67,7 +67,7 @@ export default function AboutPage() {
           <div className="overflow-hidden rounded-3xl shadow-lift">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/corporate-training.jpg"
+              src="/images/ourstory.jpg"
               alt="APIONEER facilitators working with an enterprise leadership team"
               width={1408}
               height={1008}
