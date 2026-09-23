@@ -1,4 +1,4 @@
-import { execSync } from "node:child_process";
+const { execSync } = require("node:child_process");
 
 // Build DATABASE_URL from GoDaddy's injected DB_* vars, if not already set
 if (!process.env.DATABASE_URL && process.env.DB_HOST) {
