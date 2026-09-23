@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   openGraph: { title, description },
 };
 
-// Refetch periodically rather than on every request — content changes when
-// someone updates it via the admin panel, not on every visitor.
-export const revalidate = 300;
+// Fetch on every request instead of prerendering at build time — the
+// database isn't reachable during the build step.
+export const dynamic = "force-dynamic";
 
 function formatDate(d: Date) {
   return new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(d);
@@ -90,7 +90,7 @@ export default async function WorkshopsPage() {
         title="Want a private workshop for your team?"
         description="We can run any of our intensives as a closed cohort for your organisation, onsite or live virtual."
         primary={{ label: "Talk to an Expert", to: "/contact" }}
-        secondary={{ label: "See upcoming webinars", to: "/webinars" }}
+        secondary={{ label: "See upcoming webinars", to: "/workshops" }}
       />
     </>
   );

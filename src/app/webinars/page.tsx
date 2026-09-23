@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: { title, description },
 };
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 function formatDate(d: Date) {
   return new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(d);
