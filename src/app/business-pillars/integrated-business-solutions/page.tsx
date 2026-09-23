@@ -142,11 +142,16 @@ export default function IntegratedBusinessSolutionsPage() {
   return (
     <>
       {/* ---------------- Hero ---------------- */}
-      <section className="relative overflow-hidden bg-navy-deep">
+      <section
+        className="relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/images/integrated-business-solutions-hero.jpeg')",
+        }}
+      >
+        {/* Dark transparent overlay */}
         <div
           aria-hidden
-          className="absolute right-[6%] top-[8%] h-[24rem] w-[24rem] rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, oklch(0.68 0.106 195 / 0.2), transparent 60%)" }}
+          className="absolute inset-0 bg-navy-deep/70"
         />
         <div className="container-x relative py-6 text-xs text-white/50">
           <Link href="/" className="hover:text-white">Home</Link>
@@ -184,7 +189,7 @@ export default function IntegratedBusinessSolutionsPage() {
             </div>
           </div>
 
-          <div className="relative mx-auto aspect-square w-full max-w-[24rem]">
+          {/* <div className="relative mx-auto aspect-square w-full max-w-[24rem]">
             <div className="absolute inset-0 rounded-full border border-dashed border-white/15" />
             <div className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-teal/20 text-teal">
               <span className="text-center text-[0.65rem] font-bold uppercase tracking-wide">APIONEER</span>
@@ -210,7 +215,7 @@ export default function IntegratedBusinessSolutionsPage() {
                 </div>
               );
             })}
-          </div>
+          </div> */}
         </div>
       </section>
 

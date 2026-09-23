@@ -129,11 +129,16 @@ export default function TechnologyProductSolutionsPage() {
   return (
     <>
       {/* ---------------- Hero ---------------- */}
-      <section className="relative overflow-hidden bg-navy-deep">
+      <section
+        className="relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/images/Technology Product Solutions.png')",
+        }}
+      >
+        {/* Dark transparent overlay */}
         <div
           aria-hidden
-          className="absolute left-[6%] top-[8%] h-[24rem] w-[24rem] rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, oklch(0.55 0.13 260 / 0.2), transparent 60%)" }}
+          className="absolute inset-0 bg-navy-deep/70"
         />
         <div className="container-x relative py-6 text-xs text-white/50">
           <Link href="/" className="hover:text-white">Home</Link>
@@ -171,7 +176,7 @@ export default function TechnologyProductSolutionsPage() {
             </div>
           </div>
 
-          <div className="relative mx-auto aspect-square w-full max-w-[24rem]">
+          {/* <div className="relative mx-auto aspect-square w-full max-w-[24rem]">
             <div className="absolute inset-0 rounded-full border border-dashed border-white/15" />
             <div className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-2xl border border-[#8aa1ec]/40 bg-navy text-[#8aa1ec]">
               <span className="text-center text-[0.65rem] font-bold uppercase tracking-wide">aPIONEER</span>
@@ -194,13 +199,13 @@ export default function TechnologyProductSolutionsPage() {
                 </div>
               );
             })}
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* ---------------- Our Technology Solution Areas ---------------- */}
       <section id="solution-areas" className="section-y container-x">
-        <SectionHeading eyebrow="What we offer" title="Our Technology Solution Areas" align="center" />
+        <SectionHeading eyebrow="What we offer" title="Our Technology Solution Areas"  align="center" />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {solutionAreas.map((s) => (
             <div key={s.number} className="rounded-2xl border border-border bg-card p-6 shadow-soft">

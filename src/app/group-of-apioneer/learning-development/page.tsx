@@ -179,12 +179,12 @@ export default function LearningDevelopmentPage() {
                 </div>
               ))}
             </div>
-            <div className="mt-7 aspect-[16/7] overflow-hidden rounded-2xl bg-gradient-to-br from-navy/8 to-teal/12">
+            {/* <div className="mt-7 aspect-[16/7] overflow-hidden rounded-2xl bg-gradient-to-br from-navy/8 to-teal/12"> */}
               {/* Replace with a real photo at /images/learning-development-programs.jpg */}
-              <div className="flex h-full w-full items-center justify-center">
+              {/* <div className="flex h-full w-full items-center justify-center">
                 <Laptop className="h-10 w-10 text-navy/20" aria-hidden />
               </div>
-            </div>
+            </div> */}
             <div className="mt-7">
               <ActionButton to="/courses" variant="navy">
                 View All Programs
@@ -218,7 +218,7 @@ export default function LearningDevelopmentPage() {
           {learningPartnerLogos.map((p) => (
             <div key={p.name} className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center shadow-soft">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.logo} alt={`${p.name} logo`} className="h-9 w-auto max-w-[7rem] object-contain" />
+              <img src={p.logo} alt={`${p.name} logo`} className="h-12 w-auto max-w-[7rem] object-contain" />
               <p className="text-xs text-muted-foreground">{p.tag}</p>
             </div>
           ))}
