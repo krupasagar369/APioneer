@@ -307,22 +307,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- Client marquee ---------------- */}
-      <section className="border-b border-border bg-surface py-10" aria-label="Trusted by enterprise clients">
-        <p className="container-x text-center text-[0.7rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-          Trusted by technology and transformation leaders worldwide
-        </p>
-        <div className="relative mt-7 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-          <div className="flex w-max animate-marquee gap-14 pr-14">
-            {[...clients, ...clients].map((c, i) => (
-              <span key={`${c}-${i}`} className="font-display text-lg font-bold tracking-[0.18em] text-navy/35">
-                {c}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
+ {/* ---------------- Client marquee ---------------- */}
+<section className="border-b border-border bg-surface py-10" aria-label="Trusted by enterprise clients">
+  <p className="container-x text-center text-[0.7rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+    Trusted by technology and transformation leaders worldwide
+  </p>
+  <div className="relative mt-7 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+    <div className="flex w-max animate-marquee gap-14 pr-14">
+      {[...clients, ...clients].map((c, i) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={`${c.name}-${i}`}
+          src={c.logo}
+          alt={`${c.name} — Pioneer Training Client`}
+          loading="lazy"
+          className="h-10 w-auto shrink-0 opacity-90 transition-opacity hover:opacity-100"
+        />
+      ))}
+    </div>
+  </div>
+</section>
       {/* ---------------- Services ---------------- */}
       <section className="section-y container-x">
         <SectionHeading

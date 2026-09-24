@@ -747,7 +747,21 @@ export const stats = [
 ];
 
 export const clients = [
-  "NORTHBRIDGE", "AXIOM ENERGY", "VERTEXA", "KAIROS BANK", "MERIDIAN HEALTH", "STRATOFORM", "ORBITAL TELECOM", "CIVICA GROUP",
+  { name: "Iter", logo: "https://ik.imagekit.io/pmgrmuaen/iter?updatedAt=1761911738486" },
+  { name: "Zen", logo: "https://ik.imagekit.io/pmgrmuaen/zen?updatedAt=1761911716906" },
+  { name: "Valtex", logo: "https://ik.imagekit.io/pmgrmuaen/valtex?updatedAt=1761911687403" },
+  { name: "Trinity", logo: "https://ik.imagekit.io/pmgrmuaen/trinity?updatedAt=1761911663638" },
+  { name: "Tally", logo: "https://ik.imagekit.io/pmgrmuaen/tally?updatedAt=1761911639570" },
+  { name: "Trianz", logo: "https://ik.imagekit.io/pmgrmuaen/Trianz?updatedAt=1761911619713" },
+  { name: "Luxoft", logo: "https://ik.imagekit.io/pmgrmuaen/luxoft?updatedAt=1761911561438" },
+  { name: "Anunta", logo: "https://ik.imagekit.io/pmgrmuaen/anunta?updatedAt=1761911493209" },
+  { name: "Nineleaps", logo: "https://ik.imagekit.io/pmgrmuaen/Nineleaps?updatedAt=1761911448714" },
+  { name: "Visteon", logo: "https://ik.imagekit.io/pmgrmuaen/visteon?updatedAt=1761910316496" },
+  { name: "Sify", logo: "https://ik.imagekit.io/pmgrmuaen/sify?updatedAt=1761910291289" },
+  { name: "Hexaware", logo: "https://ik.imagekit.io/pmgrmuaen/hexaware?updatedAt=1761910264401" },
+  { name: "Target", logo: "https://ik.imagekit.io/pmgrmuaen/Target?updatedAt=1761910235129" },
+  { name: "Infinite", logo: "https://ik.imagekit.io/pmgrmuaen/infinite?updatedAt=1761910165846" },
+  { name: "WNS", logo: "https://ik.imagekit.io/iq6dnzo5f/Picture1.png" },
 ];
 
 export const ctaOptions = ["Request Callback", "Download Brochure", "Talk to an Expert", "Corporate Inquiry", "Book Free Consultation"] as const;
