@@ -554,49 +554,78 @@ export default function Home() {
         </div>
       </section> */}
 
-      {/* ---------------- Workshops ---------------- */}
-      <section className="section-y container-x">
-        <SectionHeading
-          eyebrow="Upcoming workshops"
-          title="Hands-on intensives, capped for depth"
-          description="Small-cohort labs where teams solve real problems with practitioners in the room."
-          action={
-            <ActionButton to="/workshops" variant="outline" size="lg">
-              All workshops
-            </ActionButton>
-          }
-        />
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {workshops.slice(0, 3).map((w, i) => (
-            <Reveal key={w.slug} delay={i * 70}>
-              <WorkshopCard item={w} />
-            </Reveal>
-          ))}
-        </div>
-      </section>
+{/* ---------------- Workshops ---------------- */}
+<section className="section-y container-x">
+  <SectionHeading
+    eyebrow="Upcoming workshops"
+    title="Hands-on intensives, capped for depth"
+    description="Small-cohort labs where teams solve real problems with practitioners in the room."
+    action={
+      <ActionButton to="/workshops" variant="outline" size="lg">
+        All workshops
+      </ActionButton>
+    }
+  />
+  {workshops.length > 0 ? (
+    <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {workshops.slice(0, 3).map((w, i) => (
+        <Reveal key={w.slug} delay={i * 70}>
+          <WorkshopCard item={w} />
+        </Reveal>
+      ))}
+    </div>
+  ) : (
+    <div className="mt-12 rounded-2xl border border-dashed border-border p-10 text-center">
+      <p className="text-sm font-semibold text-navy">No workshops scheduled this month</p>
+      <p className="mt-1.5 text-sm text-muted-foreground">
+        Check back soon, or talk to us about running a private workshop for your team.
+      </p>
+      <div className="mt-5">
+        <ActionButton to="/contact" variant="outline">
+          Talk to an Expert
+        </ActionButton>
+      </div>
+    </div>
+  )}
+</section>
 
-      {/* ---------------- Webinars ---------------- */}
-      <section className="section-y bg-surface">
-        <div className="container-x">
-          <SectionHeading
-            eyebrow="Upcoming webinars"
-            title="Free live sessions with our practice leads"
-            description="Forty-five focused minutes on the questions enterprise teams are actually wrestling with."
-            action={
-              <ActionButton to="/webinars" variant="outline" size="lg">
-                All webinars
-              </ActionButton>
-            }
-          />
-          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {webinars.map((w, i) => (
-              <Reveal key={w.slug} delay={i * 70}>
-                <WebinarCard item={w} />
-              </Reveal>
-            ))}
-          </div>
+
+{/* ---------------- Webinars ---------------- */}
+<section className="section-y bg-surface">
+  <div className="container-x">
+    <SectionHeading
+      eyebrow="Upcoming webinars"
+      title="Free live sessions with our practice leads"
+      description="Forty-five focused minutes on the questions enterprise teams are actually wrestling with."
+      action={
+        <ActionButton to="/webinars" variant="outline" size="lg">
+          All webinars
+        </ActionButton>
+      }
+    />
+    {webinars.length > 0 ? (
+      <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        {webinars.map((w, i) => (
+          <Reveal key={w.slug} delay={i * 70}>
+            <WebinarCard item={w} />
+          </Reveal>
+        ))}
+      </div>
+    ) : (
+      <div className="mt-12 rounded-2xl border border-dashed border-border p-10 text-center">
+        <p className="text-sm font-semibold text-navy">No webinars scheduled this month</p>
+        <p className="mt-1.5 text-sm text-muted-foreground">
+          Check back soon, or tell us a topic you&apos;d like us to cover.
+        </p>
+        <div className="mt-5">
+          <ActionButton to="/contact" variant="outline">
+            Suggest a Topic
+          </ActionButton>
         </div>
-      </section>
+      </div>
+    )}
+  </div>
+</section>
 
       {/* ---------------- Categories strip ---------------- */}
       <section className="section-y container-x">

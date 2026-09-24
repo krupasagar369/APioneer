@@ -530,21 +530,28 @@ export const courses: Course[] = [
   },
 ];
 
-export const workshops = [
-  { slug: "cloud-cost-optimisation-lab", title: "Cloud Cost Optimisation Lab", date: "14 Aug 2026", city: "Bengaluru", format: "In-person", seats: "24 seats", duration: "1 day", focus: "FinOps", blurb: "A hands-on lab where teams cut real cloud spend using tagging, rightsizing and commitment strategies." },
-  { slug: "ai-adoption-sprint", title: "Enterprise AI Adoption Sprint", date: "22 Aug 2026", city: "Hyderabad", format: "In-person", seats: "30 seats", duration: "2 days", focus: "Generative AI", blurb: "Move from AI curiosity to a governed, prioritised use-case portfolio in two facilitated days." },
-  { slug: "isms-audit-clinic", title: "ISMS Internal Audit Clinic", date: "05 Sep 2026", city: "Live Virtual", format: "Virtual", seats: "40 seats", duration: "1 day", focus: "ISO 27001", blurb: "Practise audit planning, evidence sampling and non-conformity writing with accredited auditors." },
-  { slug: "product-discovery-intensive", title: "Product Discovery Intensive", date: "19 Sep 2026", city: "Pune", format: "In-person", seats: "20 seats", duration: "1 day", focus: "Agile", blurb: "Structured discovery techniques for product owners working under delivery pressure." },
-  { slug: "kubernetes-day-zero", title: "Kubernetes Day-Zero Bootcamp", date: "02 Oct 2026", city: "Chennai", format: "In-person", seats: "26 seats", duration: "2 days", focus: "Platform", blurb: "Stand up a production-shaped cluster with GitOps and observability from an empty account." },
-  { slug: "leadership-communication-lab", title: "Executive Communication Lab", date: "17 Oct 2026", city: "Live Virtual", format: "Virtual", seats: "18 seats", duration: "1 day", focus: "Leadership", blurb: "High-stakes narrative, board storytelling and influence practice with video feedback." },
-];
+export const workshops: {
+  slug: string;
+  title: string;
+  date: string;
+  city: string;
+  format: string;
+  seats: string;
+  duration: string;
+  focus: string;
+  blurb: string;
+}[] = [];
 
-export const webinars = [
-  { slug: "azure-landing-zones", title: "Designing Azure Landing Zones That Scale", date: "06 Aug 2026", time: "16:00 IST", speaker: "Ritika Menon", role: "Principal Cloud Architect", duration: "60 min", blurb: "A reference-architecture walkthrough covering subscription topology, policy and network hubs." },
-  { slug: "iso-27001-2022-transition", title: "ISO 27001:2022 Transition — What Auditors Expect", date: "13 Aug 2026", time: "15:30 IST", speaker: "Anand Krishnan", role: "Lead Auditor, PECB", duration: "45 min", blurb: "The control changes that matter and the evidence certification bodies are asking for." },
-  { slug: "genai-guardrails", title: "Guardrails for Enterprise Generative AI", date: "27 Aug 2026", time: "17:00 IST", speaker: "Dr. Meera Iyer", role: "Head of AI Practice", duration: "60 min", blurb: "Evaluation, red-teaming and policy patterns for production AI systems." },
-  { slug: "agile-metrics-that-matter", title: "Agile Metrics That Executives Actually Trust", date: "10 Sep 2026", time: "16:00 IST", speaker: "Kabir Shah", role: "Certified Scrum Trainer", duration: "45 min", blurb: "Replacing velocity theatre with flow metrics that drive real decisions." },
-];
+export const webinars: {
+  slug: string;
+  title: string;
+  date: string;
+  time: string;
+  speaker: string;
+  role: string;
+  duration: string;
+  blurb: string;
+}[] = [];
 
 export const blogs: BlogPost[] = [
   { slug: "skills-gap-2026", title: "The Enterprise Skills Gap Report 2026", category: "Research", date: "18 Jul 2026", read: "9 min", author: "APIONEER Research", excerpt: "What 400 technology leaders told us about capability shortfalls in cloud, security and AI — and the budgets they are moving to close them." },
