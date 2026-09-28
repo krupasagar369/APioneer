@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { execSync } = require("node:child_process");
 
 // Always rebuild DATABASE_URL from GoDaddy's injected DB_* vars at runtime,
@@ -9,6 +10,9 @@ if (process.env.DB_HOST) {
   console.warn("Warning: DATABASE_URL is not set and no DB_HOST was found.");
 }
 
-// Run migrations now that the real DATABASE_URL is set, then start the server
-execSync("npx prisma migrate deploy", { stdio: "inherit" });
+// Sync the schema straight to the database (creates the Workshop and Webinar
+// tables if missing). Uses db push instead of migrate deploy because the old
+// migration history was written for PostgreSQL and can't be applied to MySQL.
+// The client was already generated during the build, so skip regenerating it.
+execSync("npx prisma db push --skip-generate", { stdio: "inherit" });
 execSync("next start", { stdio: "inherit" });
