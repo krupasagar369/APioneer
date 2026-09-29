@@ -133,7 +133,7 @@ export default function Home() {
                 icon: BadgeCheck,
                 title: "Enterprise Technology & Certification Solutions",
                 subtitle: "Build Skills. Earn Credentials. Transform Enterprises.",
-                image: "/images/Enterprise Technology & Certification Solutions.jpeg",
+                image: "/images/Enterprise Technology.jpeg",
                 imageAlt: "Professional completing an online certification course",
                 cta: { label: "Explore Enterprise Solutions", to: "/business-pillars/enterprise-learning-certifications" },
                 items: [
@@ -150,7 +150,7 @@ export default function Home() {
                 icon: Layers,
                 title: "Technology & Product Solutions",
                 subtitle: "Technology. Applications. Licensing. Enablement.",
-                image: "/images/Technology & Product Solutions.jpeg",
+                image: "public/images/Technology & Product Solutions.jpeg",
                 imageAlt: "Cloud and enterprise technology network visualisation",
                 cta: { label: "Explore Technology Solutions", to: "/business-pillars/technology-product-solutions" },
                 items: [
