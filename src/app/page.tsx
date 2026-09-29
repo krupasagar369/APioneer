@@ -150,7 +150,7 @@ export default function Home() {
                 icon: Layers,
                 title: "Technology & Product Solutions",
                 subtitle: "Technology. Applications. Licensing. Enablement.",
-                image: "public/images/Technology & Product Solutions.jpeg",
+                image: "public/images/Technology Product Solutions.jpeg",
                 imageAlt: "Cloud and enterprise technology network visualisation",
                 cta: { label: "Explore Technology Solutions", to: "/business-pillars/technology-product-solutions" },
                 items: [
