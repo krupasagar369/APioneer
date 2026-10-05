@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import type { Metadata } from "next";
+import { getPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/site/JsonLd";
 import {
   Award,
   BadgeCheck,
@@ -33,19 +36,26 @@ import { ActionButton, CtaBand, SectionHeading, FeatureCard, PartnerLogo } from 
 import { BlogCard, CourseCard, PartnerCard, TestimonialCard, WebinarCard, WorkshopCard } from "@/components/site/cards";
 import { Reveal } from "@/components/site/Stats";
 
-const title = "APIONEER Business Solutions — Enterprise Training & Certification";
-const description =
-  "Accredited corporate training, professional certification, government upskilling and IT consulting for enterprise teams in 42 countries.";
+// const title = "APIONEER Business Solutions — Enterprise Training & Certification";
+// const description =
+//   "Accredited corporate training, professional certification, government upskilling and IT consulting for enterprise teams in 42 countries.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  openGraph: {
-    title,
-    description,
-  },
-};
+// export const metadata: Metadata = {
+//   title,
+//   description,
+//   openGraph: {
+//     title,
+//     description,
+//   },
+// };
 
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/", {
+    title: "APIONEER Business Solutions — Enterprise Training & Certification",
+    description:
+      "Accredited corporate training, professional certification, government upskilling and IT consulting for enterprise teams in 42 countries.",
+  });
+}
 export default function Home() {
   const featured = courses.filter((c) => c.featured);
   const recommended = courses.filter((c) => c.recommended);

@@ -59,3 +59,22 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model PageSeo {
+  id              String   @id @default(cuid())
+  path            String   @unique
+  title           String?
+  description     String?  @db.Text
+  keywords        String?  @db.Text
+  canonicalUrl    String?
+  noindex         Boolean  @default(false)
+  ogTitle         String?
+  ogDescription   String?  @db.Text
+  ogImage         String?
+  twitterTitle    String?
+  twitterDescription String? @db.Text
+  twitterImage    String?
+  jsonLd          String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
