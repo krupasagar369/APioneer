@@ -555,7 +555,7 @@ export default function Home() {
       </section> */}
 
 {/* ---------------- Workshops ---------------- */}
-<section className="section-y container-x">
+{/* <section className="section-y container-x">
   <SectionHeading
     eyebrow="Upcoming workshops"
     title="Hands-on intensives, capped for depth"
@@ -587,11 +587,11 @@ export default function Home() {
       </div>
     </div>
   )}
-</section>
+</section> */}
 
 
 {/* ---------------- Webinars ---------------- */}
-<section className="section-y bg-surface">
+{/* <section className="section-y bg-surface">
   <div className="container-x">
     <SectionHeading
       eyebrow="Upcoming webinars"
@@ -625,7 +625,7 @@ export default function Home() {
       </div>
     )}
   </div>
-</section>
+</section> */}
 
       {/* ---------------- Categories strip ---------------- */}
       <section className="section-y container-x">
