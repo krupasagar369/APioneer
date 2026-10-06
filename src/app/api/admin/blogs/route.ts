@@ -13,4 +13,4 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     return NextResponse.json({ error: "Failed to create post. Slug may already be in use." }, { status: 400 });
   }
-}
+} 
