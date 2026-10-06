@@ -43,7 +43,7 @@ export interface BlogPost {
   authorRole?: string;
   authorBio?: string;
   keyTakeaways?: string[];
-  body?: { heading: string; paragraphs: string[] }[];
+  body?: { heading: string; paragraphs: string[]; imageUrl?: string; imageAlt?: string }[];
   faqs?: { question: string; answer: string }[];
   ogImage?: string;
 }

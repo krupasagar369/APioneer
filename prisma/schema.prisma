@@ -78,3 +78,47 @@ model PageSeo {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
+
+model Blog {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  title          String
+  excerpt        String   @db.Text
+  category       String
+  author         String
+  authorRole     String?
+  authorBio      String?  @db.Text
+  date           DateTime
+  readTime       String
+  ogImage        String?
+  keyTakeaways   String?  @db.Text // JSON array of strings
+  body           String?  @db.Text // JSON array of { heading, paragraphs }
+  faqs           String?  @db.Text // JSON array of { question, answer }
+  published      Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([published, date])
+}
+
+model Career {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  team             String
+  location         String
+  type             String
+  exp              String
+  blurb            String   @db.Text
+  employmentType   String?
+  about            String?  @db.Text
+  responsibilities String?  @db.Text // JSON array of strings
+  requirements     String?  @db.Text // JSON array of strings
+  niceToHave       String?  @db.Text // JSON array of strings
+  benefits         String?  @db.Text // JSON array of strings
+  published        Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([published])
+}
