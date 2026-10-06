@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import type { Metadata } from "next";
 import { getPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/site/JsonLd";
 import {
