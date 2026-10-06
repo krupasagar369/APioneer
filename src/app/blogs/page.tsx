@@ -6,6 +6,7 @@ import { Reveal } from "@/components/site/Stats";
 import { getPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/site/JsonLd";
 
+export const dynamic = "force-dynamic";
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("/blogs", {
     title: "Blogs & Insights on Enterprise Learning | aPIONEER",

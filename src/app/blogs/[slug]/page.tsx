@@ -7,6 +7,8 @@ import { BlogCard } from "@/components/site/cards";
 import { getPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/site/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 type Props = { params: Promise<{ slug: string }> };
 
 type Section = { heading: string; paragraphs: string[]; imageUrl?: string; imageAlt?: string };
