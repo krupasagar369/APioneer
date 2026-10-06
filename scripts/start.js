@@ -10,9 +10,12 @@ if (process.env.DB_HOST) {
   console.warn("Warning: DATABASE_URL is not set and no DB_HOST was found.");
 }
 
-// Sync the schema straight to the database (creates the Workshop and Webinar
-// tables if missing). Uses db push instead of migrate deploy because the old
-// migration history was written for PostgreSQL and can't be applied to MySQL.
-// The client was already generated during the build, so skip regenerating it.
+// Sync the schema straight to the database (creates/updates tables as needed).
 execSync("npx prisma db push --skip-generate", { stdio: "inherit" });
+
+// Ensure the admin user exists in the live database (safe to run every
+// deploy — it updates the password if the user already exists, creates it
+// if not).
+execSync("npx tsx prisma/seed.ts", { stdio: "inherit" });
+
 execSync("next start", { stdio: "inherit" });

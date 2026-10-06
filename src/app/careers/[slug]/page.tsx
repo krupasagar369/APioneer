@@ -1,42 +1,61 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { careers } from "@/data/site";
+import { prisma } from "@/lib/prisma";
 import { PageHero, Pill, SectionHeading } from "@/components/site/ui";
 import { JobDetailClient } from "./JobDetailClient";
+import { getPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/site/JsonLd";
 
-export function generateStaticParams() {
-  return careers.map((c) => ({ slug: c.slug }));
-}
+export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ slug: string }> };
 
+function parseJsonArray(value: string | null): string[] {
+  if (!value) return [];
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const job = careers.find((c) => c.slug === slug);
-  if (!job) return { title: "Role not found — aPIONEER", robots: { index: false, follow: false } };
-  const title = `${job.title} — Careers at aPIONEER`;
-  return { title, description: job.blurb, openGraph: { title, description: job.blurb } };
+  const job = await prisma.career.findUnique({ where: { slug } });
+  if (!job || !job.published) {
+    return { title: "Role not found — aPIONEER", robots: { index: false, follow: false } };
+  }
+  return getPageMetadata(`/careers/${slug}`, {
+    title: `${job.title} — Careers at aPIONEER`,
+    description: job.blurb,
+  });
 }
 
 export default async function JobDetailPage({ params }: Props) {
   const { slug } = await params;
-  const job = careers.find((c) => c.slug === slug);
-  if (!job) notFound();
+  const job = await prisma.career.findUnique({ where: { slug } });
+  if (!job || !job.published) notFound();
+
+  const responsibilities = parseJsonArray(job.responsibilities);
+  const requirements = parseJsonArray(job.requirements);
+  const niceToHave = parseJsonArray(job.niceToHave);
+  const benefits = parseJsonArray(job.benefits);
 
   const jobPostingJsonLd = {
     "@context": "https://schema.org",
     "@type": "JobPosting",
     title: job.title,
     description: job.about ?? job.blurb,
-    datePosted: job.datePosted ?? new Date().toISOString().slice(0, 10),
-    validThrough: job.validThrough,
+    datePosted: job.createdAt.toISOString().slice(0, 10),
     employmentType: job.employmentType ?? "FULL_TIME",
-    hiringOrganization: { "@type": "Organization", name: "aPIONEER Business Solutions", sameAs: "https://apioneer.com" },
+    hiringOrganization: { "@type": "Organization", name: "aPIONEER Business Solutions", sameAs: "https://apioneerbusiness.com" },
     jobLocation: { "@type": "Place", address: { "@type": "PostalAddress", addressLocality: job.location } },
   };
 
   return (
     <>
+      <JsonLd path={`/careers/${slug}`} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingJsonLd) }} />
 
       <PageHero
@@ -62,11 +81,11 @@ export default async function JobDetailPage({ params }: Props) {
               </div>
             ) : null}
 
-            {job.responsibilities?.length ? (
+            {responsibilities.length > 0 ? (
               <div className="mt-14">
                 <h2 className="text-2xl text-navy">Responsibilities</h2>
                 <ul className="mt-6 grid gap-3">
-                  {job.responsibilities.map((r) => (
+                  {responsibilities.map((r) => (
                     <li key={r} className="flex items-start gap-3 rounded-xl border border-border bg-surface p-4">
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-teal" aria-hidden />
                       <span className="text-sm leading-relaxed text-navy">{r}</span>
@@ -76,11 +95,11 @@ export default async function JobDetailPage({ params }: Props) {
               </div>
             ) : null}
 
-            {job.requirements?.length ? (
+            {requirements.length > 0 ? (
               <div className="mt-14">
                 <h2 className="text-2xl text-navy">What we're looking for</h2>
                 <ul className="mt-6 grid gap-3">
-                  {job.requirements.map((r) => (
+                  {requirements.map((r) => (
                     <li key={r} className="flex items-start gap-3 rounded-xl border border-border bg-surface p-4">
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" aria-hidden />
                       <span className="text-sm leading-relaxed text-navy">{r}</span>
@@ -90,22 +109,22 @@ export default async function JobDetailPage({ params }: Props) {
               </div>
             ) : null}
 
-            {job.niceToHave?.length ? (
+            {niceToHave.length > 0 ? (
               <div className="mt-14">
                 <h2 className="text-2xl text-navy">Nice to have</h2>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {job.niceToHave.map((n) => (
+                  {niceToHave.map((n) => (
                     <Pill key={n}>{n}</Pill>
                   ))}
                 </div>
               </div>
             ) : null}
 
-            {job.benefits?.length ? (
+            {benefits.length > 0 ? (
               <div className="mt-14">
                 <h2 className="text-2xl text-navy">What you'll get</h2>
                 <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                  {job.benefits.map((b) => (
+                  {benefits.map((b) => (
                     <li key={b} className="rounded-xl border border-teal/25 bg-teal/8 p-4 text-sm text-navy">
                       {b}
                     </li>

@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Briefcase, MapPin } from "lucide-react";
-import { careers } from "@/data/site";
+import { prisma } from "@/lib/prisma";
 import { CtaBand, PageHero, Pill, SectionHeading } from "@/components/site/ui";
 import { Reveal } from "@/components/site/Stats";
+import { getPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/site/JsonLd";
 
-const title = "Careers at aPIONEER Business Solutions";
-const description =
-  "Join a global enterprise learning and consulting firm. Open roles across delivery, consulting, growth and design.";
+export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  openGraph: { title, description, type: "website" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/careers", {
+    title: "Careers at aPIONEER Business Solutions",
+    description:
+      "Join a global enterprise learning and consulting firm. Open roles across delivery, consulting, growth and design.",
+  });
+}
 
 const perks = [
   { t: "Practitioner time", d: "Faculty spend part of each year on live client engagements." },
@@ -38,16 +40,20 @@ const accents = [
   "from-navy-deep to-teal",
 ];
 
-export default function CareersPage() {
+export default async function CareersPage() {
+  const careers = await prisma.career.findMany({
+    where: { published: true },
+    orderBy: { createdAt: "desc" },
+  });
+
   const jobPostingsJsonLd = careers.map((c) => ({
     "@context": "https://schema.org",
     "@type": "JobPosting",
     title: c.title,
     description: c.blurb,
-    datePosted: c.datePosted ?? new Date().toISOString().slice(0, 10),
-    validThrough: c.validThrough,
+    datePosted: c.createdAt.toISOString().slice(0, 10),
     employmentType: c.employmentType ?? "FULL_TIME",
-    hiringOrganization: { "@type": "Organization", name: "aPIONEER Business Solutions", sameAs: "https://apioneer.com" },
+    hiringOrganization: { "@type": "Organization", name: "aPIONEER Business Solutions", sameAs: "https://apioneerbusiness.com" },
     jobLocation: { "@type": "Place", address: { "@type": "PostalAddress", addressLocality: c.location } },
   }));
 
@@ -59,6 +65,7 @@ export default function CareersPage() {
 
   return (
     <>
+      <JsonLd path="/careers" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingsJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
@@ -84,49 +91,58 @@ export default function CareersPage() {
       <section className="bg-surface section-y">
         <div className="container-x">
           <SectionHeading eyebrow="Open roles" title={`${careers.length} positions open`} />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {careers.map((c, i) => (
-              <Reveal key={c.slug} delay={i * 60}>
-                <Link
-                  href={`/careers/${c.slug}`}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
-                >
-                  <div className={`h-2 w-full bg-gradient-to-r ${accents[i % accents.length]}`} />
-                  <div className="flex flex-1 flex-col p-6">
-                    <div className="flex items-center justify-between gap-3">
-                      <Pill tone="teal">{c.team}</Pill>
-                      <span
-                        className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${accents[i % accents.length]} text-white shadow-soft`}
-                      >
-                        <Briefcase className="h-5 w-5" aria-hidden />
+          {careers.length > 0 ? (
+            <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {careers.map((c, i) => (
+                <Reveal key={c.slug} delay={i * 60}>
+                  <Link
+                    href={`/careers/${c.slug}`}
+                    className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
+                  >
+                    <div className={`h-2 w-full bg-gradient-to-r ${accents[i % accents.length]}`} />
+                    <div className="flex flex-1 flex-col p-6">
+                      <div className="flex items-center justify-between gap-3">
+                        <Pill tone="teal">{c.team}</Pill>
+                        <span
+                          className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${accents[i % accents.length]} text-white shadow-soft`}
+                        >
+                          <Briefcase className="h-5 w-5" aria-hidden />
+                        </span>
+                      </div>
+                      <h3 className="mt-5 text-lg leading-snug text-navy transition-colors group-hover:text-teal">
+                        {c.title}
+                      </h3>
+                      <p className="mt-2.5 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{c.blurb}</p>
+                      <div className="mt-5 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                        <span className="inline-flex items-center gap-1.5">
+                          <MapPin className="h-3.5 w-3.5 text-teal" aria-hidden />
+                          {c.location}
+                        </span>
+                        <span>·</span>
+                        <span>{c.type}</span>
+                        <span>·</span>
+                        <span>{c.exp}</span>
+                      </div>
+                      <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-navy transition-colors group-hover:text-teal">
+                        View role & apply
+                        <ArrowUpRight
+                          className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                          aria-hidden
+                        />
                       </span>
                     </div>
-                    <h3 className="mt-5 text-lg leading-snug text-navy transition-colors group-hover:text-teal">
-                      {c.title}
-                    </h3>
-                    <p className="mt-2.5 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{c.blurb}</p>
-                    <div className="mt-5 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                      <span className="inline-flex items-center gap-1.5">
-                        <MapPin className="h-3.5 w-3.5 text-teal" aria-hidden />
-                        {c.location}
-                      </span>
-                      <span>·</span>
-                      <span>{c.type}</span>
-                      <span>·</span>
-                      <span>{c.exp}</span>
-                    </div>
-                    <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-navy transition-colors group-hover:text-teal">
-                      View role & apply
-                      <ArrowUpRight
-                        className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        aria-hidden
-                      />
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-12 rounded-2xl border border-dashed border-border p-10 text-center">
+              <p className="text-sm font-semibold text-navy">No open roles right now</p>
+              <p className="mt-1.5 text-sm text-muted-foreground">
+                Check back soon, or send us your details for future openings.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
