@@ -45,7 +45,7 @@ type MenuKey = "partners" | "courses" | "training" | "insights" | null;
 
 const trainingLinks = [
   { to: "/corporate-training", label: "Corporate Training", detail: "Private cohorts and capability academies", icon: Building2 },
-  { to: "/government-training", label: "Government Training", detail: "Public sector upskilling at scale", icon: Landmark },
+  { to: "/behavioral-development", label: "Behavioral Development", detail: "Soft skills that change how people work", icon: Landmark },
   { to: "/services", label: "Services & Consulting", detail: "Cloud, security and platform advisory", icon: Layers },
   { to: "/workshops", label: "Workshops", detail: "Hands-on labs and intensives", icon: Presentation },
   { to: "/webinars", label: "Webinars", detail: "Live expert sessions, free to join", icon: Video },
@@ -66,7 +66,7 @@ const allNavLinks = [
   { to: "/courses", label: "Courses" },
   { to: "/categories", label: "Categories" },
   { to: "/corporate-training", label: "Corporate Training" },
-  { to: "/government-training", label: "Government Training" },
+  { to: "/behavioral-development", label: "Behavioral Development" },
   { to: "/services", label: "Services" },
   { to: "/workshops", label: "Workshops" },
   { to: "/webinars", label: "Webinars" },
