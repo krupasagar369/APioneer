@@ -722,7 +722,7 @@ export const careers: Career[] = [
 
 export const services = [
   { title: "Corporate Training", detail: "Private cohorts, capability academies and role-based learning paths for enterprise teams.", href: "/corporate-training" },
-  { title: "Government Training", detail: "Large-scale technical upskilling for ministries, departments and public undertakings.", href: "/government-training" },
+  { title: "Behavioral Development Trainings", detail: "Soft skills, communication, emotional intelligence and people-management programmes for every level of your organisation.", href: "/behavioral-development" },
   { title: "Professional Certification", detail: "Accredited certification delivery across Microsoft, AWS, PECB and Scrum Alliance.", href: "/courses" },
   { title: "IT Consulting", detail: "Cloud architecture, security posture and platform engineering advisory engagements.", href: "/services" },
   { title: "Technical Upskilling", detail: "Assessment-led reskilling programmes with measurable competency uplift.", href: "/services" },

@@ -351,7 +351,7 @@ export default function Home() {
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {[
             { icon: Building2, title: "Corporate Training", detail: "Private cohorts, capability academies and role-based learning paths designed around your architecture and delivery model." },
-            { icon: Landmark, title: "Government Training", detail: "Large-scale technical upskilling for ministries, departments and public undertakings, with transparent outcome reporting." },
+            { icon: Handshake, title: "Behavioral Development", detail: "Soft skills, communication, emotional intelligence and people-management training for every level of your organisation." },
             { icon: Award, title: "Professional Certification", detail: "Accredited delivery across Microsoft, AWS, PECB and Scrum Alliance with exam readiness built into every cohort." },
             { icon: Layers, title: "IT Consulting", detail: "Cloud architecture, security posture and platform engineering advisory delivered by the same experts who teach." },
             { icon: GraduationCap, title: "Technical Upskilling", detail: "Assessment-led reskilling with baseline measurement, targeted labs and verified competency uplift." },
